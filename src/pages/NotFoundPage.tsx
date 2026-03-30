@@ -8,14 +8,14 @@ export function NotFoundPage() {
           <p className="eyebrow">Page Not Found</p>
           <h1>指定されたページが見つかりません。</h1>
           <p>
-            URL が変更されたか、存在しないアイデアが指定されています。アイデア一覧から目的の施策を探してください。
+            URL が変更されたか、存在しないアイデアが指定されています。ホームからテーマを選び、目的の施策を探してください。
           </p>
           <div className="button-row">
-            <Link className="button button-primary" to="/ideas">
-              アイデア一覧へ
+            <Link className="button button-primary" to="/">
+              ホームへ
             </Link>
-            <Link className="button button-secondary" to="/">
-              ホームへ戻る
+            <Link className="button button-secondary" to="/paid-leave/ideas">
+              有給一覧へ
             </Link>
           </div>
         </div>

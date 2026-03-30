@@ -1,7 +1,19 @@
-# 有給取得促進アイデアサイト
+# ナレッジスペース知見ライブラリ
 
-人事企画担当が有給取得促進施策を比較し、そのまま制度案や運用案のたたき台にできる静的サイトです。  
-一覧で比較しやすく、各施策は詳細ページで「なぜ効くか」「どう運用するか」「どこに向くか」まで読める構成にしています。
+株式会社ナレッジスペース向けに、「有給取得促進」と「睡眠調査・睡眠改善」の2テーマを同じ UI と同じ情報設計で読める静的サイトです。  
+制度改善、会議設計、管理職行動、回復設計まで、会議に持ち込みやすい粒度で比較できる構成にしています。
+
+## テーマ構成
+
+- `/` : 2テーマの入口
+- `/paid-leave` : 有給取得促進テーマのトップ
+- `/paid-leave/ideas` : 有給アイデア一覧
+- `/paid-leave/ideas/:slug` : 有給アイデア詳細
+- `/sleep` : 睡眠調査・睡眠改善テーマのトップ
+- `/sleep/ideas` : 睡眠アイデア一覧
+- `/sleep/ideas/:slug` : 睡眠アイデア詳細
+
+旧ルート `/ideas` と `/ideas/:slug` は、有給テーマへリダイレクトします。
 
 ## セットアップ
 
@@ -50,21 +62,44 @@ firebase deploy --only hosting
 npm run deploy:hosting
 ```
 
+Firebase Hosting は `firebase.json` で `dist` を公開ディレクトリにし、SPA rewrite によって `/paid-leave/ideas/:slug` や `/sleep/ideas/:slug` の直アクセスにも対応しています。
+
 ## 主要ディレクトリ
 
 ```txt
 src/
   app/          ルーター
   components/   レイアウト、セクション、アイデア関連 UI
-  data/         アイデア、Packs、Roadmap の静的データ
+  data/         テーマ情報、アイデア、Packs、Roadmap の静的データ
   lib/          フィルタ関数
-  pages/        Home / Ideas / Idea Detail
-  types/        Idea, Pack, Roadmap の型定義
+  pages/        Home / Theme Home / Ideas / Idea Detail
+  types/        Idea, Theme, Pack, Roadmap の型定義
 ```
+
+## データ追加ルール
+
+- アイデアはコンポーネントへ直書きせず、`src/data/paidLeaveIdeas.ts` と `src/data/sleepIdeas.ts` に置きます。
+- 型は `src/types/idea.ts` を基準にし、一覧表示用と詳細表示用の情報を同じオブジェクトで持たせます。
+- 新テーマを追加する場合は、`src/data/themes.ts` と `src/data/libraries.ts` にテーマメタを登録し、UI は共通コンポーネントで吸収します。
+- 詳細ページでは「何を解決するか」「なぜ効くのか」「どう運用するか」「想定リスク」「まず何から始めるか」「KPI例」「社内での伝え方例」を最低限そろえます。
+
+## 共通コンポーネント方針
+
+- `Hero`
+- `FeaturedIdeas`
+- `IdeaFilterBar`
+- `IdeaGrid`
+- `IdeaCard`
+- `IdeaDetailLayout`
+- `RelatedIdeas`
+- `PacksSection`
+- `RoadmapSection`
+
+テーマ差分は文言、色味、データで吸収し、UI 骨格は共通化しています。
 
 ## 実装メモ
 
-- ルーティングは `/` `/ideas` `/ideas/:slug`
-- データは `src/data/ideas.ts` に集約
-- Firebase Hosting は SPA rewrite で詳細 URL の直アクセスに対応
-- フォントは `Manrope` と `Noto Sans JP` を `index.html` から読み込み
+- ルーティングは React Router で管理しています。
+- Firebase Hosting は SPA rewrite でテーマ詳細 URL の直アクセスに対応しています。
+- フォントは `Manrope` と `Noto Sans JP` を `index.html` から読み込みます。
+- Windows ではファイル監視や Firebase CLI の安定性を考え、WSL 利用を推奨します。

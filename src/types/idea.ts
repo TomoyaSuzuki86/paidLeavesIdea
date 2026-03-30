@@ -1,4 +1,5 @@
 export type IdeaScale = "低" | "中" | "高";
+export type ThemeKey = "paid-leave" | "sleep";
 
 export interface Idea {
   id: number;
@@ -44,4 +45,25 @@ export interface RoadmapPhase {
   title: string;
   summary: string;
   actions: string[];
+}
+
+export interface ThemeMeta {
+  key: ThemeKey;
+  label: string;
+  shortLabel: string;
+  basePath: string;
+  description: string;
+  heroTitle: string;
+  heroDescription: string;
+  focusLabel: string;
+  entrySummary: string;
+  topHighlights: string[];
+}
+
+export interface ThemeLibrary {
+  theme: ThemeMeta;
+  ideas: Idea[];
+  featuredIdeas: Idea[];
+  packs: IdeaPack[];
+  roadmap: RoadmapPhase[];
 }

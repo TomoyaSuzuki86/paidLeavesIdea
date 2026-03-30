@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
-import type { Idea } from "../../types/idea";
+import type { Idea, ThemeKey } from "../../types/idea";
 
 interface IdeaCardProps {
   idea: Idea;
+  themeKey: ThemeKey;
   featured?: boolean;
 }
 
-export function IdeaCard({ idea, featured = false }: IdeaCardProps) {
+export function IdeaCard({ idea, themeKey, featured = false }: IdeaCardProps) {
   return (
-    <article className={`idea-card${featured ? " idea-card-featured" : ""}`}>
+    <article className={`idea-card theme-${themeKey}${featured ? " idea-card-featured" : ""}`}>
       <div className="idea-card-head">
         <span className="idea-tone">{idea.tone}</span>
         <span className="idea-owner">{idea.owner}</span>
@@ -40,7 +41,7 @@ export function IdeaCard({ idea, featured = false }: IdeaCardProps) {
         </div>
       </dl>
 
-      <Link className="text-link" to={`/ideas/${idea.slug}`}>
+      <Link className="text-link" to={`/${themeKey}/ideas/${idea.slug}`}>
         詳細を見る
       </Link>
     </article>

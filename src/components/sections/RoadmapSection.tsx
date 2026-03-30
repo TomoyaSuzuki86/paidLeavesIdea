@@ -1,14 +1,19 @@
-import { roadmap } from "../../data/roadmap";
+import type { RoadmapPhase, ThemeMeta } from "../../types/idea";
 import { SectionHeading } from "../ui/SectionHeading";
 
-export function RoadmapSection() {
+interface RoadmapSectionProps {
+  theme: ThemeMeta;
+  roadmap: RoadmapPhase[];
+}
+
+export function RoadmapSection({ theme, roadmap }: RoadmapSectionProps) {
   return (
     <section className="section" id="roadmap">
       <div className="shell">
         <SectionHeading
           eyebrow="Roadmap"
-          title="30 / 60 / 90日でどこまで入れるか"
-          description="重い資料ではなく、どの順で着手すると効果が出やすいかが分かる最低限のロードマップです。"
+          title={`${theme.shortLabel}を30 / 60 / 90日でどう入れるか`}
+          description="重い資料ではなく、どの順で着手すると運用に乗りやすいかが分かる最低限のロードマップです。"
         />
 
         <div className="roadmap-grid">

@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
-import { ideas } from "../../data/ideas";
-import { packs } from "../../data/packs";
+import type { Idea, IdeaPack, ThemeMeta } from "../../types/idea";
 import { SectionHeading } from "../ui/SectionHeading";
 
-export function PacksSection() {
+interface PacksSectionProps {
+  theme: ThemeMeta;
+  ideas: Idea[];
+  packs: IdeaPack[];
+}
+
+export function PacksSection({ theme, ideas, packs }: PacksSectionProps) {
   return (
     <section className="section" id="packs">
       <div className="shell">
         <SectionHeading
           eyebrow="Packs"
-          title="単発でなく、組み合わせで考える"
-          description="導入順やセット効果が見えると、制度化の議論が進みやすくなります。まずは3点単位で見る想定です。"
+          title={`${theme.shortLabel}を単発でなく、組み合わせで考える`}
+          description="導入順やセット効果が見えると、制度化や運用改善の議論が進みやすくなります。まずは3点単位で見られる構成です。"
         />
 
         <div className="pack-grid">
@@ -25,7 +30,7 @@ export function PacksSection() {
                   const idea = ideas.find((item) => item.slug === slug);
                   return idea ? (
                     <li key={slug}>
-                      <Link to={`/ideas/${slug}`}>{idea.title}</Link>
+                      <Link to={`${theme.basePath}/ideas/${slug}`}>{idea.title}</Link>
                     </li>
                   ) : null;
                 })}

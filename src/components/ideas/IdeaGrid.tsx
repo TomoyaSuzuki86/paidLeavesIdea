@@ -1,11 +1,12 @@
-import type { Idea } from "../../types/idea";
+import type { Idea, ThemeKey } from "../../types/idea";
 import { IdeaCard } from "./IdeaCard";
 
 interface IdeaGridProps {
   ideas: Idea[];
+  themeKey: ThemeKey;
 }
 
-export function IdeaGrid({ ideas }: IdeaGridProps) {
+export function IdeaGrid({ ideas, themeKey }: IdeaGridProps) {
   if (!ideas.length) {
     return (
       <div className="empty-state">
@@ -17,9 +18,9 @@ export function IdeaGrid({ ideas }: IdeaGridProps) {
   }
 
   return (
-    <div className="idea-grid">
+      <div className="idea-grid">
       {ideas.map((idea) => (
-        <IdeaCard key={idea.slug} idea={idea} />
+        <IdeaCard key={idea.slug} idea={idea} themeKey={themeKey} />
       ))}
     </div>
   );

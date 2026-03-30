@@ -2,7 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/ideas", label: "Ideas" },
+  { to: "/paid-leave", label: "有給" },
+  { to: "/sleep", label: "睡眠" },
 ];
 
 export function Header() {
@@ -12,8 +13,8 @@ export function Header() {
         <Link className="brand" to="/">
           <span className="brand-mark">PL</span>
           <span>
-            <strong>有給取得促進アイデアサイト</strong>
-            <small>制度化のヒントを一覧と詳細で読む</small>
+            <strong>ナレッジスペース 知見ライブラリ</strong>
+            <small>有給と睡眠を同じ設計で読む</small>
           </span>
         </Link>
 
@@ -27,8 +28,8 @@ export function Header() {
               {link.label}
             </NavLink>
           ))}
-          <a className="nav-link nav-ghost" href="/#packs">
-            Packs
+          <a className="nav-link nav-ghost" href="/#themes">
+            Themes
           </a>
         </nav>
       </div>

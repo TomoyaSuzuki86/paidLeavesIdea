@@ -1,8 +1,9 @@
-import type { Idea } from "../../types/idea";
+import type { Idea, ThemeKey } from "../../types/idea";
 import { RelatedIdeas } from "./RelatedIdeas";
 
 interface IdeaDetailLayoutProps {
   idea: Idea;
+  themeKey: ThemeKey;
   relatedIdeas: Idea[];
 }
 
@@ -14,7 +15,7 @@ const renderList = (items: string[]) => (
   </ul>
 );
 
-export function IdeaDetailLayout({ idea, relatedIdeas }: IdeaDetailLayoutProps) {
+export function IdeaDetailLayout({ idea, themeKey, relatedIdeas }: IdeaDetailLayoutProps) {
   return (
     <div className="detail-layout">
       <section className="detail-hero card">
@@ -69,13 +70,6 @@ export function IdeaDetailLayout({ idea, relatedIdeas }: IdeaDetailLayoutProps) 
             {renderList(idea.operation_flow)}
           </section>
           <section className="detail-section card">
-            <h2>どの会社に向くか</h2>
-            <h3>向いている会社</h3>
-            {renderList(idea.suitable_for)}
-            <h3>向きにくい会社</h3>
-            {renderList(idea.not_suitable_for)}
-          </section>
-          <section className="detail-section card">
             <h2>想定リスク</h2>
             <h3>リスク</h3>
             {renderList(idea.risks)}
@@ -111,7 +105,7 @@ export function IdeaDetailLayout({ idea, relatedIdeas }: IdeaDetailLayoutProps) 
         </aside>
       </div>
 
-      <RelatedIdeas ideas={relatedIdeas} />
+      <RelatedIdeas ideas={relatedIdeas} themeKey={themeKey} />
     </div>
   );
 }
