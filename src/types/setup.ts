@@ -1,4 +1,4 @@
-import type { Idea } from "./idea";
+import type { Idea, ThemeKey } from "./idea";
 
 export interface SetupOption {
   id: string;
@@ -14,6 +14,7 @@ export interface SetupQuestion {
 }
 
 export interface SetupRecommendation {
+  themeKey: ThemeKey;
   primaryIdea: Idea;
   supportingIdeas: Idea[];
   matchedOptions: SetupOption[];

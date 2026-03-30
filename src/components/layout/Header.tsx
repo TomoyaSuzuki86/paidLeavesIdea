@@ -2,7 +2,8 @@ import { Link, NavLink } from "react-router-dom";
 
 const links = [
   { to: "/", label: "トップ" },
-  { to: "/paid-leave", label: "有給" },
+  { to: "/diagnostic", label: "診断" },
+  { to: "/paid-leave", label: "有休" },
   { to: "/sleep", label: "睡眠" },
 ];
 
@@ -13,8 +14,8 @@ export function Header() {
         <Link className="brand" to="/">
           <span className="brand-mark">PL</span>
           <span>
-            <strong>日本ナレッジスペース株式会社 知見ライブラリ</strong>
-            <small>有給と睡眠を同じ設計で読む</small>
+            <strong>ナレッジサービス アイデアライブラリ</strong>
+            <small>有給取得促進と睡眠改善を比較しながら読める構成</small>
           </span>
         </Link>
 

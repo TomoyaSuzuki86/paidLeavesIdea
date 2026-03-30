@@ -1,5 +1,7 @@
 import type { Idea } from "../types/idea";
 
+export const ALL_TAG = "すべて";
+
 export function getAllTags(ideas: Idea[]) {
   return Array.from(new Set(ideas.flatMap((idea) => idea.tags))).sort((a, b) => a.localeCompare(b, "ja"));
 }
@@ -8,7 +10,7 @@ export function filterIdeas(ideas: Idea[], query: string, activeTag: string) {
   const normalized = query.trim().toLowerCase();
 
   return ideas.filter((idea) => {
-    const tagMatch = activeTag === "すべて" || idea.tags.includes(activeTag);
+    const tagMatch = activeTag === ALL_TAG || idea.tags.includes(activeTag);
     if (!tagMatch) {
       return false;
     }

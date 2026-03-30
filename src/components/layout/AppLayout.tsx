@@ -4,7 +4,7 @@ import { Header } from "./Header";
 
 export function AppLayout() {
   const location = useLocation();
-  const isImmersiveRoute = location.pathname === "/paid-leave";
+  const isImmersiveRoute = location.pathname === "/diagnostic";
 
   if (isImmersiveRoute) {
     return <Outlet />;

@@ -1,12 +1,13 @@
 # ナレッジサービス アイデアライブラリ
 
 有給取得促進と睡眠改善をテーマにした React + Vite 製の静的サイトです。  
-`/paid-leave` は質問を 1 問ずつ進めるセットアップ体験、`/paid-leave/ideas` と `/sleep/*` は既存のライブラリ閲覧導線として構成しています。
+通常のテーマ閲覧は `/paid-leave` と `/sleep`、質問導線は `/diagnostic` に分離しています。
 
 ## ルート構成
 
 - `/` : テーマ一覧
-- `/paid-leave` : 有給取得促進のセットアップ体験
+- `/diagnostic` : テーマ分岐つき診断導線
+- `/paid-leave` : 有給取得促進テーマトップ
 - `/paid-leave/ideas` : 有給取得促進アイデア一覧
 - `/paid-leave/ideas/:slug` : 有給取得促進アイデア詳細
 - `/sleep` : 睡眠改善テーマトップ
@@ -73,11 +74,12 @@ npm run build
 npm run preview
 ```
 
-ローカル preview を開いた状態で、以下の URL を直接確認してください。
+ローカル preview では以下を直接確認してください。
 
+- `http://localhost:4173/diagnostic`
 - `http://localhost:4173/paid-leave`
 - `http://localhost:4173/paid-leave/ideas`
-- `http://localhost:4173/paid-leave/ideas/reserve-candidate-days-for-low-takers`
+- `http://localhost:4173/sleep`
 
 ## 主要ディレクトリ
 
@@ -85,19 +87,8 @@ npm run preview
 src/
   app/          ルーター
   components/   layout / ideas / sections / ui
-  data/         アイデア、パック、ロードマップ、質問データ
+  data/         アイデア、パック、ロードマップ、診断データ
   lib/          フィルタ・推薦ロジック
   pages/        各ページコンポーネント
   types/        型定義
 ```
-
-## 今回追加した主な構成
-
-- `src/pages/PaidLeaveSetupPage.tsx`
-  - 有給取得促進トップ用のセットアップ体験
-- `src/data/paidLeaveSetup.ts`
-  - 質問と選択肢の定義
-- `src/lib/paidLeaveSetup.ts`
-  - 回答から施策候補を絞るロジック
-- `src/types/setup.ts`
-  - セットアップ画面用の型

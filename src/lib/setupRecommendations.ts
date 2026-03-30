@@ -1,17 +1,21 @@
-import { paidLeaveSetupFallbackSlugs, paidLeaveSetupQuestions } from "../data/paidLeaveSetup";
-import type { Idea } from "../types/idea";
-import type { SetupOption, SetupRecommendation } from "../types/setup";
+import type { Idea, ThemeKey } from "../types/idea";
+import type { SetupOption, SetupQuestion, SetupRecommendation } from "../types/setup";
 
-const optionLookup = new Map<string, SetupOption>(
-  paidLeaveSetupQuestions.flatMap((question) => question.options.map((option) => [option.id, option] as const)),
-);
-
-export function getPaidLeaveSetupRecommendation(
+export function getSetupRecommendation(
   ideas: Idea[],
+  questions: SetupQuestion[],
+  fallbackSlugs: Idea["slug"][],
   answers: Record<string, string[]>,
+  themeKey: ThemeKey,
 ): SetupRecommendation {
-  const matchedOptions = paidLeaveSetupQuestions.flatMap((question) =>
-    (answers[question.id] ?? []).map((optionId) => optionLookup.get(optionId)).filter((option): option is SetupOption => Boolean(option)),
+  const optionLookup = new Map<string, SetupOption>(
+    questions.flatMap((question) => question.options.map((option) => [option.id, option] as const)),
+  );
+
+  const matchedOptions = questions.flatMap((question) =>
+    (answers[question.id] ?? [])
+      .map((optionId) => optionLookup.get(optionId))
+      .filter((option): option is SetupOption => Boolean(option)),
   );
 
   const scoreMap = new Map<Idea["slug"], number>();
@@ -37,17 +41,9 @@ export function getPaidLeaveSetupRecommendation(
     return left.id - right.id;
   });
 
-  const selectedIdeas: Idea[] = [];
+  const selectedIdeas = rankedIdeas.filter((idea) => (scoreMap.get(idea.slug) ?? 0) > 0);
 
-  rankedIdeas.forEach((idea) => {
-    if ((scoreMap.get(idea.slug) ?? 0) <= 0) {
-      return;
-    }
-
-    selectedIdeas.push(idea);
-  });
-
-  paidLeaveSetupFallbackSlugs.forEach((slug) => {
+  fallbackSlugs.forEach((slug) => {
     const fallbackIdea = ideas.find((idea) => idea.slug === slug);
     if (fallbackIdea && !selectedIdeas.some((idea) => idea.slug === fallbackIdea.slug)) {
       selectedIdeas.push(fallbackIdea);
@@ -58,6 +54,7 @@ export function getPaidLeaveSetupRecommendation(
   const focusSignals = Array.from(new Set(matchedOptions.flatMap((option) => option.signals))).slice(0, 4);
 
   return {
+    themeKey,
     primaryIdea: primaryIdea ?? ideas[0],
     supportingIdeas: rest,
     matchedOptions,

@@ -64,10 +64,17 @@ export function IdeaDetailLayout({ idea, themeKey, relatedIdeas }: IdeaDetailLay
           </section>
           <section className="detail-section card">
             <h2>どう運用するか</h2>
-            <h3>導入ステップ</h3>
+            <h3>導入のしかた</h3>
             {renderList(idea.how_to_implement)}
             <h3>運用フロー</h3>
             {renderList(idea.operation_flow)}
+          </section>
+          <section className="detail-section card">
+            <h2>どの会社に向くか</h2>
+            <h3>向いている会社</h3>
+            {renderList(idea.suitable_for)}
+            <h3>向きにくい会社</h3>
+            {renderList(idea.not_suitable_for)}
           </section>
           <section className="detail-section card">
             <h2>想定リスク</h2>

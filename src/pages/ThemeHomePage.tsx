@@ -29,14 +29,17 @@ export function ThemeHomePage({ themeKey }: ThemeHomePageProps) {
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="テーマ概要"
-            title={`${library.theme.shortLabel}テーマの全体像を一覧でつかむ`}
-            description="タイトルだけでなく、コスト感、効果感、新規性、主担当、ひとこと評価まで一覧で比較できます。ナレッジスペースで運用に落としやすい順に読み進められる構成です。"
+            eyebrow="Idea Snapshot"
+            title={`${library.theme.shortLabel}の全体像を先に見る`}
+            description="注目施策を見たうえで一覧へ進むか、診断から入口を絞るかを選べる構成にしています。"
           />
           <IdeaGrid ideas={snapshotIdeas} themeKey={themeKey} />
-          <div className="section-cta">
+          <div className="section-cta button-row">
             <Link className="button button-secondary" to={`${library.theme.basePath}/ideas`}>
-              すべてのアイデアを見る
+              一覧を見る
+            </Link>
+            <Link className="button button-primary" to="/diagnostic">
+              診断から始める
             </Link>
           </div>
         </div>
