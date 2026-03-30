@@ -16,20 +16,28 @@ export function ThemeIdeasPage({ themeKey }: ThemeIdeasPageProps) {
   const tags = ["すべて", ...getAllTags(library.ideas)];
 
   const filteredIdeas = useMemo(() => filterIdeas(library.ideas, query, activeTag), [library.ideas, query, activeTag]);
+  const currentSummary = `現在の条件: 検索「${query.trim() || "なし"}」 / タグ「${activeTag}」`;
+  const comparisonHint = "比較の見方: 要約 → タグ → コスト感 / 効果感 / 新規性 / 主担当";
 
   return (
     <main className={`page theme-page theme-${themeKey}`}>
       <section className="section">
         <div className="shell">
           <IdeaFilterBar
-            eyebrow={`${library.theme.label} Library`}
+            eyebrow={`${library.theme.label} ライブラリ`}
             title={`${library.theme.shortLabel}アイデアを比較しながら選ぶ`}
-            description={`${library.theme.shortLabel}に関する施策を、タグと検索で絞り込みながら比較できます。株式会社ナレッジスペースの会議設計、制度設計、管理職運用に接続しやすい切り口へ寄せています。`}
-            placeholder={themeKey === "paid-leave" ? "例: 管理職 / 推奨日 / 半休 / 属人化" : "例: 夜間連絡 / 会議設計 / 回復 / 相談"}
+            description={`${library.theme.shortLabel}に関する施策を、タグと検索で絞り込みながら比較できます。日本ナレッジスペース株式会社の会議設計、制度設計、管理職運用に接続しやすい切り口へ寄せています。`}
+            placeholder={themeKey === "paid-leave" ? "例: 管理職 / 推奨日 / 半休 / 属人化" : "例: 勤務時間外の送信 / 会議設計 / 回復 / 相談"}
+            currentSummary={currentSummary}
+            comparisonHint={comparisonHint}
             query={query}
             onQueryChange={setQuery}
             activeTag={activeTag}
             onTagChange={setActiveTag}
+            onClearFilters={() => {
+              setQuery("");
+              setActiveTag("すべて");
+            }}
             tags={tags}
             resultCount={filteredIdeas.length}
           />

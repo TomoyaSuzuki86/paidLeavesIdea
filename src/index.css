@@ -287,6 +287,12 @@ h3 {
   transform: translateY(-1px);
 }
 
+.button:disabled {
+  cursor: default;
+  opacity: 0.45;
+  transform: none;
+}
+
 .button-primary {
   background: var(--theme-accent);
   color: #fff;
@@ -465,6 +471,13 @@ h3 {
   align-items: end;
 }
 
+.search-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
 .search-field {
   width: min(360px, 100%);
 }
@@ -476,6 +489,25 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.92);
+}
+
+.filter-meta {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.filter-hint {
+  margin: 0;
+  color: var(--text-faint);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.filter-clear {
+  width: fit-content;
+  min-height: 44px;
+  padding-inline: 16px;
 }
 
 .filter-chip-row {
@@ -495,6 +527,11 @@ h3 {
 .filter-chip.is-active {
   background: var(--theme-accent);
   color: #fff;
+}
+
+.filter-chip:disabled {
+  cursor: default;
+  opacity: 0.45;
 }
 
 .theme-grid {
@@ -674,6 +711,14 @@ h3 {
 
   .site-nav {
     flex-wrap: wrap;
+  }
+
+  .search-controls {
+    width: 100%;
+  }
+
+  .filter-clear {
+    width: 100%;
   }
 
   .hero-card,

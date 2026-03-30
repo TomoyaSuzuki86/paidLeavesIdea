@@ -29,7 +29,7 @@ export function ThemeHomePage({ themeKey }: ThemeHomePageProps) {
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="Library Snapshot"
+            eyebrow="テーマ概要"
             title={`${library.theme.shortLabel}テーマの全体像を一覧でつかむ`}
             description="タイトルだけでなく、コスト感、効果感、新規性、主担当、ひとこと評価まで一覧で比較できます。ナレッジスペースで運用に落としやすい順に読み進められる構成です。"
           />

@@ -27,11 +27,15 @@ export function ThemeIdeaDetailPage({ themeKey }: ThemeIdeaDetailPageProps) {
       <section className="section">
         <div className="shell">
           <div className="breadcrumb-row">
-            <Link className="text-link" to={`${library.theme.basePath}/ideas`}>
-              一覧へ戻る
+            <Link className="text-link" to={`${library.theme.basePath}`}>
+              テーマトップ
             </Link>
             <span>/</span>
-            <span>{idea.title}</span>
+            <Link className="text-link" to={`${library.theme.basePath}/ideas`}>
+              一覧
+            </Link>
+            <span>/</span>
+            <span>詳細</span>
           </div>
           <IdeaDetailLayout idea={idea} themeKey={themeKey} relatedIdeas={relatedIdeas} />
         </div>

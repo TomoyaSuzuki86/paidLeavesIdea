@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
 const links = [
-  { to: "/", label: "Home" },
+  { to: "/", label: "トップ" },
   { to: "/paid-leave", label: "有給" },
   { to: "/sleep", label: "睡眠" },
 ];
@@ -13,7 +13,7 @@ export function Header() {
         <Link className="brand" to="/">
           <span className="brand-mark">PL</span>
           <span>
-            <strong>ナレッジスペース 知見ライブラリ</strong>
+            <strong>日本ナレッジスペース株式会社 知見ライブラリ</strong>
             <small>有給と睡眠を同じ設計で読む</small>
           </span>
         </Link>
@@ -29,7 +29,7 @@ export function Header() {
             </NavLink>
           ))}
           <a className="nav-link nav-ghost" href="/#themes">
-            Themes
+            テーマ
           </a>
         </nav>
       </div>

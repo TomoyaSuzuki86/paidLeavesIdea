@@ -15,10 +15,10 @@ export function HomePage() {
         <div className="shell">
           <section className="hero-card">
             <div className="hero-copy">
-              <p className="eyebrow">Knowledge Space Library</p>
+              <p className="eyebrow">ナレッジスペース知見ライブラリ</p>
               <h1>ナレッジスペースの働き方と回復を、2つのテーマで読む。</h1>
               <p className="lead">
-                このサイトは、株式会社ナレッジスペース向けに「有給取得促進」と「睡眠調査・睡眠改善」を同じ世界観で読めるように再設計した知見ライブラリです。制度設計、会議設計、管理職行動まで会議に持ち込みやすい粒度で整理しています。
+                このサイトは、日本ナレッジスペース株式会社向けに「有給取得促進」と「睡眠調査・睡眠改善」を同じ世界観で読めるように再設計した知見ライブラリです。制度設計、会議設計、管理職行動まで会議に持ち込みやすい粒度で整理しています。
               </p>
             </div>
             <div className="hero-metrics">
@@ -42,9 +42,9 @@ export function HomePage() {
       <section className="section" id="themes">
         <div className="shell">
           <SectionHeading
-            eyebrow="Themes"
+            eyebrow="テーマ"
             title="同じプロダクト内の2つの知見ライブラリ"
-            description="UI 骨格は揃えつつ、テーマごとの差は文言、色味、注目論点で表現しています。どちらもナレッジスペース前提で読める内容です。"
+            description="UI 骨格は揃えつつ、テーマごとの差は文言、色味、注目論点で表現しています。どちらも日本ナレッジスペース株式会社前提で読める内容です。"
           />
           <div className="theme-grid">
             {themes.map((theme) => {
@@ -84,7 +84,7 @@ export function HomePage() {
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="Featured Mix"
+            eyebrow="注目アイデア"
             title="まず見ておきたい注目アイデア"
             description="有給と睡眠を横並びで見ても、同じ設計思想の中で比較できるようにしています。"
           />

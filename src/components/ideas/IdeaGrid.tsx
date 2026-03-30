@@ -18,7 +18,7 @@ export function IdeaGrid({ ideas, themeKey }: IdeaGridProps) {
   }
 
   return (
-      <div className="idea-grid">
+    <div className="idea-grid">
       {ideas.map((idea) => (
         <IdeaCard key={idea.slug} idea={idea} themeKey={themeKey} />
       ))}
