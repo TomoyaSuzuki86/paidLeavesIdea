@@ -2,6 +2,7 @@ import { Navigate, createBrowserRouter, useParams } from "react-router-dom";
 import { AppLayout } from "../components/layout/AppLayout";
 import { HomePage } from "../pages/HomePage";
 import { NotFoundPage } from "../pages/NotFoundPage";
+import { PaidLeaveSetupPage } from "../pages/PaidLeaveSetupPage";
 import { ThemeHomePage } from "../pages/ThemeHomePage";
 import { ThemeIdeaDetailPage } from "../pages/ThemeIdeaDetailPage";
 import { ThemeIdeasPage } from "../pages/ThemeIdeasPage";
@@ -18,7 +19,7 @@ export const router = createBrowserRouter([
     errorElement: <NotFoundPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "paid-leave", element: <ThemeHomePage themeKey="paid-leave" /> },
+      { path: "paid-leave", element: <PaidLeaveSetupPage /> },
       { path: "paid-leave/ideas", element: <ThemeIdeasPage themeKey="paid-leave" /> },
       { path: "paid-leave/ideas/:slug", element: <ThemeIdeaDetailPage themeKey="paid-leave" /> },
       { path: "sleep", element: <ThemeHomePage themeKey="sleep" /> },
