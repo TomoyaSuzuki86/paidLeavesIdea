@@ -29,9 +29,6 @@ export function Header() {
               {link.label}
             </NavLink>
           ))}
-          <a className="nav-link nav-ghost" href="/#themes">
-            テーマ
-          </a>
         </nav>
       </div>
     </header>
