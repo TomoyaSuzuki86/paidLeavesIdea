@@ -14,7 +14,7 @@ export function FeaturedIdeas({ theme, ideas }: FeaturedIdeasProps) {
         <SectionHeading
           eyebrow="Featured"
           title={`${theme.shortLabel}で最初に見ておきたい施策`}
-          description="いずれも単なる発想でなく、会議や運用、管理職行動まで落とし込みやすい案を優先しています。"
+          description="目立たせるだけでなく、JKS の会議でそのまま論点にしやすいものを先に並べています。"
         />
         <div className="idea-grid featured-grid">
           {ideas.map((idea) => (

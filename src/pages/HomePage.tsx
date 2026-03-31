@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { IdeaCard } from "../components/ideas/IdeaCard";
+import { ScrollReveal } from "../components/ui/ScrollReveal";
 import { SectionHeading } from "../components/ui/SectionHeading";
 import { libraries, themes } from "../data/libraries";
 
@@ -13,12 +14,13 @@ export function HomePage() {
     <main className="page">
       <section className="section hero-section">
         <div className="shell">
-          <section className="hero-card">
+          <ScrollReveal as="section" className="hero-card">
             <div className="hero-copy">
-              <p className="eyebrow">ナレッジスペース知見ライブラリ</p>
-              <h1>ナレッジスペースの働き方と回復を、2つのテーマで読む。</h1>
+              <p className="eyebrow">JKS Knowledge Library</p>
+              <h1>JKS の働き方と回復を、2つのテーマで静かに比較する。</h1>
               <p className="lead">
-                このサイトは、日本ナレッジスペース株式会社向けに「有給取得促進」と「睡眠調査・睡眠改善」を同じ世界観で読めるように再設計した知見ライブラリです。制度設計、会議設計、管理職行動まで会議に持ち込みやすい粒度で整理しています。
+                このサイトは、JKS 向けに「有休取得促進」と「睡眠改善」を同じ世界観で読めるように整理した知見ライブラリです。
+                制度設計、会議設計、管理職行動まで、企画担当が会議に持ち込みやすい粒度で構成しています。
               </p>
             </div>
             <div className="hero-metrics">
@@ -27,32 +29,36 @@ export function HomePage() {
                 <strong>2テーマ</strong>
               </div>
               <div className="metric-pill">
-                <span>総アイデア数</span>
+                <span>収録アイデア</span>
                 <strong>{libraries["paid-leave"].ideas.length + libraries.sleep.ideas.length}件</strong>
               </div>
               <div className="metric-pill">
-                <span>入口</span>
-                <strong>制度改善 / 回復設計</strong>
+                <span>焦点</span>
+                <strong>制度設計 / 運用改善</strong>
               </div>
             </div>
-          </section>
+          </ScrollReveal>
         </div>
       </section>
 
       <section className="section" id="themes">
         <div className="shell">
           <SectionHeading
-            eyebrow="テーマ"
-            title="同じプロダクト内の2つの知見ライブラリ"
-            description="UI 骨格は揃えつつ、テーマごとの差は文言、色味、注目論点で表現しています。どちらも日本ナレッジスペース株式会社前提で読める内容です。"
+            eyebrow="Themes"
+            title="JKS 向けに整えた2つのテーマ"
+            description="導線と見え方は揃えつつ、論点の差は文言、色味、注目施策で表現しています。閲覧から始める導線と、診断から始める導線を分けています。"
           />
           <div className="theme-grid">
-            {themes.map((theme) => {
+            {themes.map((theme, index) => {
               const library = libraries[theme.key];
               return (
-                <article className={`theme-entry-card theme-${theme.key}`} key={theme.key}>
+                <ScrollReveal
+                  as="article"
+                  className={`theme-entry-card theme-${theme.key}`}
+                  delay={index * 80}
+                  key={theme.key}
+                >
                   <div className="theme-entry-head">
-                    <span className="theme-entry-mark">{theme.shortLabel}</span>
                     <p className="eyebrow">{theme.label}</p>
                   </div>
                   <h2>{theme.entrySummary}</h2>
@@ -64,7 +70,7 @@ export function HomePage() {
                   </ul>
                   <div className="theme-entry-meta">
                     <span>{library.ideas.length}件</span>
-                    <span>{library.featuredIdeas.length}件の注目施策</span>
+                    <span>注目施策 {library.featuredIdeas.length}件</span>
                   </div>
                   <div className="button-row">
                     <Link className="button button-primary" to={theme.basePath}>
@@ -74,7 +80,7 @@ export function HomePage() {
                       一覧へ
                     </Link>
                   </div>
-                </article>
+                </ScrollReveal>
               );
             })}
           </div>
@@ -84,13 +90,13 @@ export function HomePage() {
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="注目アイデア"
-            title="まず見ておきたい注目アイデア"
-            description="有給と睡眠を横並びで見ても、同じ設計思想の中で比較できるようにしています。"
+            eyebrow="Featured Ideas"
+            title="最初に見ておきたい注目施策"
+            description="有休と睡眠をまたいで、JKS の企画会議で比較材料にしやすい施策だけを絞って並べています。"
           />
           <div className="idea-grid featured-grid">
-            {featuredMix.map(({ idea, themeKey }) => (
-              <IdeaCard key={`${themeKey}-${idea.slug}`} idea={idea} themeKey={themeKey} featured />
+            {featuredMix.map(({ idea, themeKey }, index) => (
+              <IdeaCard key={`${themeKey}-${idea.slug}`} idea={idea} themeKey={themeKey} featured delay={index * 60} />
             ))}
           </div>
         </div>

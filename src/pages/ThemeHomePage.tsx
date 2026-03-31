@@ -31,7 +31,7 @@ export function ThemeHomePage({ themeKey }: ThemeHomePageProps) {
           <SectionHeading
             eyebrow="Idea Snapshot"
             title={`${library.theme.shortLabel}の全体像を先に見る`}
-            description="注目施策を見たうえで一覧へ進むか、診断から入口を絞るかを選べる構成にしています。"
+            description="注目施策だけでなく、全体の並びとトーンを短時間で掴めるように代表例を絞って並べています。"
           />
           <IdeaGrid ideas={snapshotIdeas} themeKey={themeKey} />
           <div className="section-cta button-row">

@@ -1,3 +1,5 @@
+import { ScrollReveal } from "../ui/ScrollReveal";
+
 interface IdeaFilterBarProps {
   eyebrow: string;
   title: string;
@@ -32,7 +34,7 @@ export function IdeaFilterBar({
   const canClear = Boolean(query.trim()) || activeTag !== "すべて";
 
   return (
-    <section className="filter-panel" aria-label="アイデア絞り込み">
+    <ScrollReveal as="section" className="filter-panel" aria-label="アイデアの絞り込み">
       <div className="filter-panel-top">
         <div>
           <p className="eyebrow">{eyebrow}</p>
@@ -73,6 +75,6 @@ export function IdeaFilterBar({
       </div>
 
       <p className="result-meta">{resultCount}件を表示中</p>
-    </section>
+    </ScrollReveal>
   );
 }

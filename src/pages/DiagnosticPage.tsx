@@ -15,17 +15,15 @@ const ENTER_DURATION_MS = 420;
 const diagnosticConfigs = {
   "paid-leave": {
     themeKey: "paid-leave" as const,
-    shortLabel: "有休",
-    title: "有給取得促進",
-    description: "取得の詰まり方に合わせて、最初に当てるべき施策だけを絞ります。",
+    title: "有休取得促進",
+    description: "JKS の有休取得で詰まりやすい論点から、最初の打ち手を絞る入口です。",
     questions: paidLeaveSetupQuestions,
     fallbackSlugs: paidLeaveSetupFallbackSlugs,
   },
   sleep: {
     themeKey: "sleep" as const,
-    shortLabel: "睡眠",
     title: "睡眠改善",
-    description: "夜間負荷や回復設計の詰まり方に合わせて、入口の打ち手を選びます。",
+    description: "JKS の勤務設計や会議運用で崩れやすい回復ポイントから、優先施策を探す入口です。",
     questions: sleepSetupQuestions,
     fallbackSlugs: sleepSetupFallbackSlugs,
   },
@@ -199,7 +197,7 @@ export function DiagnosticPage() {
           <div className="setup-status">
             <div>
               <p className="setup-label">Diagnostic</p>
-              <p className="setup-meta">テーマを選んでから、その分岐に合った質問へ進みます。</p>
+              <p className="setup-meta">テーマを選んでから、JKS で優先して見たい論点へ進みます。</p>
             </div>
             <div className="setup-progress" aria-label="進行状況">
               <span>{getProgressLabel(stage, questionCount, step)}</span>
@@ -223,10 +221,10 @@ export function DiagnosticPage() {
                 <div className="setup-copy-block">
                   <p className="setup-label">Theme Select</p>
                   <h1 id="diagnostic-title" className="setup-title">
-                    どのテーマから整えますか
+                    どのテーマから見立てを始めますか
                   </h1>
                   <p className="setup-copy">
-                    有休と睡眠のどちらを見直すかを先に選び、そのテーマ専用の質問だけに絞って進めます。
+                    有休と睡眠のどちらを先に見るかを選び、そのテーマに必要な質問だけに絞って進みます。
                   </p>
                 </div>
 
@@ -242,7 +240,6 @@ export function DiagnosticPage() {
                         disabled={isTransitioning}
                         onClick={() => handleThemeSelect(themeKey)}
                       >
-                        <span className="setup-theme-mark">{config.shortLabel}</span>
                         <span className="setup-theme-copy">
                           <strong>{config.title}</strong>
                           <span>{config.description}</span>
@@ -259,7 +256,7 @@ export function DiagnosticPage() {
                   <h1 id="diagnostic-title" className="setup-title">
                     {currentQuestion.title}
                   </h1>
-                  <p className="setup-copy">複数選択できます。いま近いものだけを選んで進めてください。</p>
+                  <p className="setup-copy">複数選択できます。今の JKS に近いものだけを選んで進めてください。</p>
                 </div>
 
                 <div className="setup-options-grid">
@@ -292,11 +289,11 @@ export function DiagnosticPage() {
                     あなたにぴったりの課題をみつけました
                   </h1>
                   <p className="setup-copy">
-                    回答に近い論点から、最初に動かしやすい施策だけを三つに絞っています。
+                    選んだ論点に近い順で、JKS で最初に動かしやすい施策だけを三つに絞っています。
                   </p>
                 </div>
 
-                <div className="setup-signal-row" aria-label="選択から見えた軸">
+                <div className="setup-signal-row" aria-label="選択から見えた論点">
                   {recommendation.focusSignals.map((signal) => (
                     <span className="setup-signal" key={signal}>
                       {signal}
@@ -306,7 +303,7 @@ export function DiagnosticPage() {
 
                 <div className="setup-result-grid">
                   <article className="setup-result-card setup-result-card-primary">
-                    <p className="setup-card-label">最初の一手</p>
+                    <p className="setup-card-label">最初の一案</p>
                     <h2>{recommendation.primaryIdea.title}</h2>
                     <p className="setup-card-copy">{recommendation.primaryIdea.summary}</p>
                     <div className="setup-result-note">
@@ -315,10 +312,13 @@ export function DiagnosticPage() {
                     </div>
                     <div className="setup-card-meta">
                       <span>主担当: {recommendation.primaryIdea.owner}</span>
-                      <span>コスト: {recommendation.primaryIdea.cost}</span>
+                      <span>コスト感: {recommendation.primaryIdea.cost}</span>
                       <span>効果感: {recommendation.primaryIdea.impact}</span>
                     </div>
-                    <Link className="button button-primary setup-action-link" to={`/${recommendation.themeKey}/ideas/${recommendation.primaryIdea.slug}`}>
+                    <Link
+                      className="button button-primary setup-action-link"
+                      to={`/${recommendation.themeKey}/ideas/${recommendation.primaryIdea.slug}`}
+                    >
                       詳細を見る
                     </Link>
                   </article>
@@ -326,12 +326,12 @@ export function DiagnosticPage() {
                   <div className="setup-secondary-grid">
                     {recommendation.supportingIdeas.map((idea) => (
                       <article className="setup-result-card" key={idea.slug}>
-                        <p className="setup-card-label">一緒に入れると効きやすい</p>
+                        <p className="setup-card-label">一緒に見たい施策</p>
                         <h2>{idea.title}</h2>
                         <p className="setup-card-copy">{idea.summary}</p>
                         <div className="setup-card-meta">
                           <span>{idea.owner}</span>
-                          <span>{idea.tags.slice(0, 2).join(" / ")}</span>
+                          <span>{idea.cost} / {idea.impact}</span>
                         </div>
                         <Link className="text-link" to={`/${recommendation.themeKey}/ideas/${idea.slug}`}>
                           この施策も見る
@@ -345,7 +345,11 @@ export function DiagnosticPage() {
           </div>
 
           <div className="setup-actions">
-            <button className="button button-secondary setup-secondary-action" disabled={isTransitioning || stage === "theme"} onClick={handleBack}>
+            <button
+              className="button button-secondary setup-secondary-action"
+              disabled={isTransitioning || stage === "theme"}
+              onClick={handleBack}
+            >
               {stage === "result" ? "回答を見直す" : "戻る"}
             </button>
 
@@ -359,7 +363,11 @@ export function DiagnosticPage() {
                 </Link>
               </div>
             ) : stage === "question" ? (
-              <button className="button button-primary setup-primary-action" disabled={isTransitioning || currentSelection.length === 0} onClick={handleNext}>
+              <button
+                className="button button-primary setup-primary-action"
+                disabled={isTransitioning || currentSelection.length === 0}
+                onClick={handleNext}
+              >
                 {currentConfig && step === currentConfig.questions.length - 1 ? "結果を見る" : "次へ"}
               </button>
             ) : recommendation ? (
@@ -367,7 +375,11 @@ export function DiagnosticPage() {
                 <Link className="button button-secondary setup-secondary-action" to={`/${recommendation.themeKey}/ideas`}>
                   一覧を見る
                 </Link>
-                <button className="button button-primary setup-primary-action" disabled={isTransitioning} onClick={handleReset}>
+                <button
+                  className="button button-primary setup-primary-action"
+                  disabled={isTransitioning}
+                  onClick={handleReset}
+                >
                   テーマから選び直す
                 </button>
               </div>

@@ -1,4 +1,5 @@
 import type { Idea, ThemeKey } from "../../types/idea";
+import { SectionHeading } from "../ui/SectionHeading";
 import { IdeaCard } from "./IdeaCard";
 
 interface RelatedIdeasProps {
@@ -13,12 +14,12 @@ export function RelatedIdeas({ ideas, themeKey }: RelatedIdeasProps) {
 
   return (
     <section className="detail-subsection">
-      <div className="section-heading">
-        <p className="eyebrow">Related Ideas</p>
-        <h2>一緒に検討しやすい施策</h2>
-        <p>単発で入れるより、前提づくりとセットにすると機能しやすい案です。</p>
-      </div>
-        <div className="idea-grid compact-grid">
+      <SectionHeading
+        eyebrow="Related Ideas"
+        title="一緒に読みたい関連施策"
+        description="単発で終わらせず、運用のつながりやセット導入の候補として見比べられるようにしています。"
+      />
+      <div className="idea-grid compact-grid">
         {ideas.map((idea) => (
           <IdeaCard key={idea.slug} idea={idea} themeKey={themeKey} />
         ))}

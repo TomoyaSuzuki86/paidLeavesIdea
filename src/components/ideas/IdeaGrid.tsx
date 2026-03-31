@@ -11,16 +11,16 @@ export function IdeaGrid({ ideas, themeKey }: IdeaGridProps) {
     return (
       <div className="empty-state">
         <p className="eyebrow">No Match</p>
-        <h2>条件に合うアイデアが見つかりません。</h2>
-        <p>検索語を短くするか、タグを「すべて」に戻して再度確認してください。</p>
+        <h2>条件に合うアイデアが見つかりませんでした。</h2>
+        <p>検索語を短くするか、タグを「すべて」に戻してから見直してください。</p>
       </div>
     );
   }
 
   return (
     <div className="idea-grid">
-      {ideas.map((idea) => (
-        <IdeaCard key={idea.slug} idea={idea} themeKey={themeKey} />
+      {ideas.map((idea, index) => (
+        <IdeaCard key={idea.slug} idea={idea} themeKey={themeKey} delay={index * 50} />
       ))}
     </div>
   );

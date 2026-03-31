@@ -1,3 +1,5 @@
+import { ScrollReveal } from "./ScrollReveal";
+
 interface SectionHeadingProps {
   eyebrow: string;
   title: string;
@@ -12,10 +14,10 @@ export function SectionHeading({
   align = "left",
 }: SectionHeadingProps) {
   return (
-    <div className={`section-heading section-heading-${align}`}>
+    <ScrollReveal as="div" className={`section-heading section-heading-${align}`}>
       <p className="eyebrow">{eyebrow}</p>
       <h2>{title}</h2>
       <p>{description}</p>
-    </div>
+    </ScrollReveal>
   );
 }

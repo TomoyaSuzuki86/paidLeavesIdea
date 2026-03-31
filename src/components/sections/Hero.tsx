@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { ThemeMeta } from "../../types/idea";
 import { MetricPill } from "../ui/MetricPill";
+import { ScrollReveal } from "../ui/ScrollReveal";
 
 interface HeroProps {
   theme: ThemeMeta;
@@ -10,7 +11,7 @@ interface HeroProps {
 
 export function Hero({ theme, ideaCount, featuredCount }: HeroProps) {
   return (
-    <section className={`hero-card theme-${theme.key}`}>
+    <ScrollReveal as="section" className={`hero-card theme-${theme.key}`}>
       <div className="hero-copy">
         <p className="eyebrow">{theme.label}</p>
         <h1>{theme.heroTitle}</h1>
@@ -27,8 +28,8 @@ export function Hero({ theme, ideaCount, featuredCount }: HeroProps) {
       <div className="hero-metrics">
         <MetricPill label="アイデア数" value={`${ideaCount}件`} />
         <MetricPill label="注目施策" value={`${featuredCount}件`} />
-        <MetricPill label="重点切り口" value={theme.focusLabel} />
+        <MetricPill label="主な焦点" value={theme.focusLabel} />
       </div>
-    </section>
+    </ScrollReveal>
   );
 }

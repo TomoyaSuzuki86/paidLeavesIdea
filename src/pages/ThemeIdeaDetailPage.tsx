@@ -27,7 +27,7 @@ export function ThemeIdeaDetailPage({ themeKey }: ThemeIdeaDetailPageProps) {
       <section className="section">
         <div className="shell">
           <div className="breadcrumb-row">
-            <Link className="text-link" to={`${library.theme.basePath}`}>
+            <Link className="text-link" to={library.theme.basePath}>
               テーマトップ
             </Link>
             <span>/</span>

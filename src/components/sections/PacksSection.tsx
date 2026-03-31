@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Idea, IdeaPack, ThemeMeta } from "../../types/idea";
 import { SectionHeading } from "../ui/SectionHeading";
+import { ScrollReveal } from "../ui/ScrollReveal";
 
 interface PacksSectionProps {
   theme: ThemeMeta;
@@ -15,12 +16,12 @@ export function PacksSection({ theme, ideas, packs }: PacksSectionProps) {
         <SectionHeading
           eyebrow="Packs"
           title={`${theme.shortLabel}を単発でなく、組み合わせで考える`}
-          description="導入順やセット効果が見えると、制度化や運用改善の議論が進みやすくなります。まずは3点単位で見られる構成です。"
+          description="会議に持ち込みやすいよう、導入順やセット運用が見えやすい3点単位で整理しています。"
         />
 
         <div className="pack-grid">
           {packs.map((pack) => (
-            <article className="pack-card" key={pack.slug}>
+            <ScrollReveal as="article" className="pack-card" key={pack.slug}>
               <p className="eyebrow">{pack.audience}</p>
               <h3>{pack.title}</h3>
               <p>{pack.summary}</p>
@@ -35,7 +36,7 @@ export function PacksSection({ theme, ideas, packs }: PacksSectionProps) {
                   ) : null;
                 })}
               </ul>
-            </article>
+            </ScrollReveal>
           ))}
         </div>
       </div>
