@@ -4,17 +4,13 @@ import { Header } from "./Header";
 
 export function AppLayout() {
   const location = useLocation();
-  const isImmersiveRoute = location.pathname === "/diagnostic";
-
-  if (isImmersiveRoute) {
-    return <Outlet />;
-  }
+  const isDiagnosticRoute = location.pathname === "/diagnostic";
 
   return (
     <>
       <Header />
       <Outlet />
-      <Footer />
+      {!isDiagnosticRoute ? <Footer /> : null}
     </>
   );
 }
