@@ -193,7 +193,10 @@ export function DiagnosticPage() {
   return (
     <main className="page paid-setup-page">
       <div className="setup-shell">
-        <section className="setup-panel" aria-labelledby="diagnostic-title">
+        <section
+          className={`setup-panel${stage === "result" ? " is-result-stage" : ""}`}
+          aria-labelledby="diagnostic-title"
+        >
           <div className="setup-status">
             <div>
               <p className="setup-label">Diagnostic</p>
@@ -208,7 +211,7 @@ export function DiagnosticPage() {
           </div>
 
           <div
-            className={`setup-stage${
+            className={`setup-stage${stage === "result" ? " is-result-stage" : ""}${
               transitionState === "leaving"
                 ? " is-leaving"
                 : transitionState === "entering"
