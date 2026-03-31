@@ -11,7 +11,7 @@ interface HeroProps {
 
 export function Hero({ theme, ideaCount, featuredCount }: HeroProps) {
   return (
-    <ScrollReveal as="section" className={`hero-card theme-${theme.key}`}>
+    <ScrollReveal as="section" className={`hero-card theme-hero-card theme-${theme.key}`}>
       <div className="hero-copy">
         <p className="eyebrow">{theme.label}</p>
         <h1>{theme.heroTitle}</h1>

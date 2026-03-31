@@ -219,6 +219,24 @@ h3 {
     rgba(255, 255, 255, 0.72);
 }
 
+.theme-hero-card {
+  grid-template-columns: minmax(0, 1.58fr) minmax(220px, 0.42fr);
+  align-items: start;
+}
+
+.theme-hero-card .hero-copy {
+  min-width: 0;
+}
+
+.theme-hero-card .hero-copy h1 {
+  max-width: none;
+}
+
+.theme-hero-card .hero-metrics {
+  width: min(100%, 250px);
+  justify-self: end;
+}
+
 .hero-copy h1 {
   margin: 10px 0 0;
   font-size: clamp(2.6rem, 5vw, 4.8rem);
@@ -804,6 +822,7 @@ h3 {
 .setup-stage {
   min-height: 0;
   display: flex;
+  width: 100%;
   overflow: hidden;
   transition:
     opacity 0.38s ease,
@@ -1081,18 +1100,20 @@ h3 {
 
 @media (min-width: 761px) {
   .paid-setup-page {
-    height: calc(100vh - 92px);
-    overflow: hidden;
+    min-height: calc(100vh - 92px);
+    overflow: visible;
   }
 
   .setup-shell {
     min-height: calc(100vh - 92px);
-    max-height: calc(100vh - 92px);
-    padding: 6px 24px 18px;
+    max-height: none;
+    padding: 10px 24px 24px;
   }
 
   .setup-panel {
-    height: min(820px, calc(100vh - 110px));
+    max-width: 960px;
+    margin: 0 auto;
+    height: min(820px, calc(100vh - 132px));
     display: grid;
     grid-template-rows: auto minmax(0, 1fr) auto;
     gap: 16px;
@@ -1108,9 +1129,9 @@ h3 {
   .setup-panel.is-result-stage .setup-stage {
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: 8px;
-    margin-right: -8px;
-    scrollbar-gutter: stable;
+    padding-right: 2px;
+    scrollbar-gutter: auto;
+    overscroll-behavior: contain;
   }
 
   .setup-panel.is-result-stage .setup-result-screen {
@@ -1237,6 +1258,7 @@ h3 {
 
 @media (max-width: 1080px) {
   .hero-card,
+  .theme-hero-card,
   .theme-grid,
   .detail-columns,
   .idea-grid,
