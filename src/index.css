@@ -1123,15 +1123,14 @@ h3 {
   .setup-stage {
     min-height: 0;
     height: 100%;
-    overflow: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: auto;
+    overscroll-behavior: contain;
   }
 
   .setup-panel.is-result-stage .setup-stage {
-    overflow-y: auto;
-    overflow-x: hidden;
     padding-right: 2px;
-    scrollbar-gutter: auto;
-    overscroll-behavior: contain;
   }
 
   .setup-panel.is-result-stage .setup-result-screen {
@@ -1150,18 +1149,21 @@ h3 {
   .setup-question-screen,
   .setup-result-screen {
     min-height: 0;
-    height: 100%;
+    height: auto;
     display: grid;
     justify-content: flex-start;
+    align-content: start;
     gap: 12px;
   }
 
   .setup-question-screen {
     grid-template-rows: auto minmax(0, 1fr);
+    padding-bottom: 8px;
   }
 
   .setup-result-screen {
     grid-template-rows: auto auto minmax(0, 1fr);
+    padding-bottom: 8px;
   }
 
   .setup-copy-block {
@@ -1197,7 +1199,7 @@ h3 {
   .setup-options-grid {
     align-content: start;
     grid-auto-rows: minmax(76px, 1fr);
-    padding-bottom: 14px;
+    padding-bottom: 20px;
   }
 
   .setup-option,
