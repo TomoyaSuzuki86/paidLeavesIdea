@@ -17,10 +17,10 @@ export function HomePage() {
           <ScrollReveal as="section" className="hero-card">
             <div className="hero-copy">
               <p className="eyebrow">JKS Knowledge Library</p>
-              <h1>JKS の働き方と回復を、2つのテーマで静かに比較する。</h1>
+              <h1>JKS の働き方と回復を、2つのテーマで見比べる。</h1>
               <p className="lead">
-                このサイトは、JKS 向けに「有休取得促進」と「睡眠改善」を同じ世界観で読めるように整理した知見ライブラリです。
-                制度設計、会議設計、管理職行動まで、企画担当が会議に持ち込みやすい粒度で構成しています。
+                このサイトは、JKS 向けに「有休取得促進」と「睡眠改善」を同じ見方で整理した知見ライブラリです。
+                制度設計、会議設計、管理職の動きまで、企画担当が会議で使いやすい粒度にまとめています。
               </p>
             </div>
             <div className="hero-metrics">
@@ -46,7 +46,7 @@ export function HomePage() {
           <SectionHeading
             eyebrow="Themes"
             title="JKS 向けに整えた2つのテーマ"
-            description="導線と見え方は揃えつつ、論点の差は文言、色味、注目施策で表現しています。閲覧から始める導線と、診断から始める導線を分けています。"
+            description="導線と見え方はそろえつつ、論点の違いは文言、色、注目施策で分けています。閲覧から始める導線と、診断から始める導線も分けています。"
           />
           <div className="theme-grid">
             {themes.map((theme, index) => {
@@ -92,7 +92,7 @@ export function HomePage() {
           <SectionHeading
             eyebrow="Featured Ideas"
             title="最初に見ておきたい注目施策"
-            description="有休と睡眠をまたいで、JKS の企画会議で比較材料にしやすい施策だけを絞って並べています。"
+            description="有休と睡眠をまたいで、JKS の会議で話しやすい施策だけを選んで並べています。"
           />
           <div className="idea-grid featured-grid">
             {featuredMix.map(({ idea, themeKey }, index) => (

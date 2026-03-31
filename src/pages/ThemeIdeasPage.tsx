@@ -17,7 +17,7 @@ export function ThemeIdeasPage({ themeKey }: ThemeIdeasPageProps) {
 
   const filteredIdeas = useMemo(() => filterIdeas(library.ideas, query, activeTag), [library.ideas, query, activeTag]);
   const currentSummary = `現在の条件: 検索「${query.trim() || "なし"}」 / タグ「${activeTag}」`;
-  const comparisonHint = "一覧ではタグ、コスト感、効果感、新規性、主担当を見比べながら候補を絞れます。";
+  const comparisonHint = "一覧ではタグ、コスト感、効果感、新規性、主担当を見て、候補を絞れます。";
 
   return (
     <main className={`page theme-page theme-${themeKey}`}>
@@ -25,8 +25,8 @@ export function ThemeIdeasPage({ themeKey }: ThemeIdeasPageProps) {
         <div className="shell">
           <IdeaFilterBar
             eyebrow={`${library.theme.label} ライブラリ`}
-            title={`${library.theme.shortLabel}アイデアを比較しながら選ぶ`}
-            description="検索とタグで絞り込みながら、制度化に持ち込みやすい順に候補を見ていけます。"
+            title={`${library.theme.shortLabel}アイデアを見比べて選ぶ`}
+            description="検索とタグで絞り込みながら、使いやすい候補を順に見ていけます。"
             placeholder={
               themeKey === "paid-leave"
                 ? "例: 管理職 / 推奨日 / 属人化 / 半休"

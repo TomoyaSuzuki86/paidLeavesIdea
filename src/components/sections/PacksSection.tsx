@@ -16,7 +16,7 @@ export function PacksSection({ theme, ideas, packs }: PacksSectionProps) {
         <SectionHeading
           eyebrow="Packs"
           title={`${theme.shortLabel}を単発でなく、組み合わせで考える`}
-          description="会議に持ち込みやすいよう、導入順やセット運用が見えやすい3点単位で整理しています。"
+          description="会議で話しやすいよう、導入順や組み合わせが見えやすい3点単位で整理しています。"
         />
 
         <div className="pack-grid">

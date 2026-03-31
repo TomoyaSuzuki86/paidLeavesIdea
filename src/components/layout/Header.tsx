@@ -14,7 +14,7 @@ export function Header() {
         <Link className="brand" to="/">
           <span>
             <strong>JKS Idea Library</strong>
-            <small>有給取得促進と睡眠改善を比較しながら読める構成</small>
+            <small>有給取得促進と睡眠改善を見比べやすくした構成</small>
           </span>
         </Link>
 
